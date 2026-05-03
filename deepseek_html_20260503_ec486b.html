@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ironclad Auto — No Mercy On Repairs</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0c;--bg2:#111;--bg3:#161616;
+  --red:#e8202a;--red2:#ff3a3a;--red3:#9e0c12;
+  --white:#f0ede8;--muted:#666;--border:#222;--steel:#2a2a2a;
+}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+h1,h2,h3,.display{font-family:'Bebas Neue',sans-serif;letter-spacing:2px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--bg);border-bottom:2px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--white)}
+.logo span{color:var(--red)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;transition:color .15s}
+.nav-links a:hover{color:var(--red)}
+.nav-btn{background:var(--red);color:var(--white);border:none;padding:11px 24px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;cursor:pointer;transition:background .15s;text-decoration:none}
+.nav-btn:hover{background:var(--red2)}
+
+/* HERO */
+.hero{margin-top:64px;min-height:660px;background:var(--bg);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero::after{content:'IRON';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:320px;color:rgba(255,255,255,0.018);line-height:1;pointer-events:none;letter-spacing:-10px}
+.hero-left{padding:4.5rem 3rem 4.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.tag-bar{width:40px;height:3px;background:var(--red)}
+.tag-text{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--red)}
+.hero h1{font-size:88px;line-height:0.95;color:var(--white);margin-bottom:0.5rem}
+.hero h1 .stroke{-webkit-text-stroke:2px var(--white);color:transparent}
+.hero h1 .red{color:var(--red)}
+.hero-sub{font-size:14px;color:var(--muted);line-height:1.8;max-width:380px;margin:1.5rem 0 2.5rem;font-weight:300}
+.hero-btns{display:flex;gap:12px}
+.btn-red{background:var(--red);color:var(--white);padding:15px 36px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;text-decoration:none;transition:background .15s;display:inline-block}
+.btn-red:hover{background:var(--red2)}
+.btn-line{background:transparent;color:var(--white);padding:14px 36px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;text-decoration:none;border:2px solid var(--steel);transition:border-color .15s;display:inline-block}
+.btn-line:hover{border-color:var(--white)}
+.hero-right{background:var(--bg2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-right::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)}
+.hero-img{width:92%;max-width:440px;position:relative;z-index:1}
+
+/* STATS */
+.stats{background:var(--red);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:1.8rem 1.5rem;border-right:1px solid rgba(0,0,0,0.2);text-align:center}
+.stat:last-child{border:none}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#fff;letter-spacing:2px}
+.stat-l{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:2px}
+
+/* SECTION */
+.section{padding:5.5rem 3.5rem;position:relative;z-index:1}
+.section-inner{max-width:1040px;margin:0 auto}
+.s-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:1rem}
+.s-tag .bar{width:28px;height:3px;background:var(--red)}
+.s-tag span{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--red)}
+.section h2{font-size:60px;color:var(--white);margin-bottom:0.8rem;line-height:1}
+.section-sub{font-size:14px;color:var(--muted);line-height:1.8;max-width:480px;font-weight:300}
+
+/* SERVICES GRID */
+.dark-section{background:var(--bg2)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:3rem;gap:1.5rem}
+.svc-card{background:var(--bg3);padding:2rem;border:2px dashed var(--red);border-radius:0px;transition:all .3s;cursor:pointer}
+.svc-card:hover{transform:translateY(-5px);background:#1e1e1e;border-color:var(--red2)}
+.svc-icon{font-size:48px;margin-bottom:1rem}
+.svc-card h3{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--white);letter-spacing:2px;margin-bottom:0.8rem}
+.svc-card p{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300}
+.svc-price{display:inline-block;margin-top:1rem;font-size:20px;font-weight:700;color:var(--red);font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+.svc-tag{display:inline-block;margin-top:0.8rem;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--red);text-transform:uppercase;border:1px solid var(--red);padding:4px 12px}
+
+/* WHY CHOOSE US */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:3rem;gap:1.5rem}
+.why-card{background:var(--bg3);padding:2rem 1.5rem;text-align:center;border:1px solid var(--border);transition:all .3s}
+.why-card:hover{transform:translateY(-5px);border-color:var(--red)}
+.why-icon{font-size:40px;margin-bottom:1rem}
+.why-card h4{font-family:'Bebas Neue',sans-serif;font-size:20px;margin-bottom:0.8rem}
+.why-card p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* MARQUEE */
+.marquee{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;white-space:nowrap}
+.m-inner{display:inline-block;animation:scroll 20s linear infinite}
+.m-inner span{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:4px;color:var(--muted);margin:0 2.5rem}
+.m-inner .sep{color:var(--red)}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* BOOKING */
+.booking-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;margin-top:3rem;align-items:start}
+.b-info p{font-size:14px;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:2rem}
+.b-contacts{display:flex;flex-direction:column;gap:1rem}
+.b-row{display:flex;align-items:flex-start;gap:14px}
+.b-icon{width:32px;height:32px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.b-txt{font-size:13px;color:var(--white);line-height:1.5}
+.b-sub{font-size:12px;color:var(--muted)}
+.form-box{background:var(--bg2);border:1px solid var(--border);border-top:3px solid var(--red);padding:2.5rem}
+.form-box h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:var(--white);margin-bottom:2rem}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.fg label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select,.fg textarea{background:var(--bg);border:1px solid var(--border);color:var(--white);font-family:'Barlow',sans-serif;font-size:13px;padding:11px 14px;outline:none;transition:border-color .2s;font-weight:300}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red)}
+.fg select{appearance:none;cursor:pointer}
+.fg textarea{resize:vertical;min-height:80px}
+.fgrow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-btn{width:100%;padding:16px;background:var(--red);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;cursor:pointer;margin-top:8px;transition:background .15s}
+.f-btn:hover{background:var(--red2)}
+
+/* REVIEWS */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.rev{background:var(--bg3);padding:2rem;border:1px solid var(--border);transition:all .3s}
+.rev:hover{transform:translateY(-5px);border-color:var(--red)}
+.rev-stars{display:flex;gap:4px;margin-bottom:1.2rem}
+.star{width:16px;height:16px;background:var(--red);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);margin-right:2px}
+.rev blockquote{font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;font-style:italic;margin-bottom:1.5rem}
+.rev-person{display:flex;align-items:center;gap:12px}
+.rev-av{width:40px;height:40px;background:var(--red3);border:1px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--white);flex-shrink:0}
+.rev-name{font-size:14px;color:var(--white);font-weight:600}
+.rev-car{font-size:11px;color:var(--muted)}
+
+/* MODAL */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;overflow-y:auto;backdrop-filter:blur(8px)}
+.modal-content{background:var(--bg2);max-width:700px;margin:3rem auto;border:2px solid var(--red);position:relative;animation:modalSlide 0.3s}
+@keyframes modalSlide{from{transform:translateY(-50px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{background:var(--red);padding:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.modal-header h2{margin:0;font-size:32px;color:var(--white)}
+.modal-close{font-size:40px;cursor:pointer;color:var(--white);transition:transform 0.2s;line-height:1}
+.modal-close:hover{transform:scale(1.2)}
+.modal-body{padding:2rem}
+.detail-block{margin:1.5rem 0;padding:1rem;background:var(--bg3);border-left:4px solid var(--red)}
+.detail-block strong{color:var(--red);display:block;margin-bottom:0.8rem;font-size:16px}
+.warning-signs{background:rgba(232,32,42,0.1);border-left-color:var(--red2)}
+.sub-list{list-style:none;margin-top:0.5rem}
+.sub-list li{padding:0.5rem 0;padding-left:1.5rem;position:relative;color:var(--muted)}
+.sub-list li:before{content:"✓";color:var(--red);position:absolute;left:0;font-weight:bold}
+.modal-footer{padding:1.5rem 2rem 2rem;border-top:1px solid var(--border)}
+.modal-wa{background:#25D366;color:white;padding:1rem;text-align:center;border-radius:50px;text-decoration:none;display:block;transition:background 0.2s;font-weight:bold}
+.modal-wa:hover{background:#1da15f}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:2px solid var(--red);padding:4rem 3.5rem 2rem;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem}
+.f-brand p{font-size:13px;color:var(--muted);line-height:1.8;font-weight:300;max-width:240px;margin-top:1rem}
+.fcol h4{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:1.2rem}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fcol ul a{text-decoration:none;font-size:13px;color:var(--muted);font-weight:300;transition:color .15s;cursor:pointer}
+.fcol ul a:hover{color:var(--white)}
+.f-bar{border-top:1px solid var(--border);margin:2rem 3.5rem 0;padding:1.5rem 0;display:flex;justify-content:space-between}
+.f-bar p{font-size:11px;color:#444;letter-spacing:0.5px}
+
+/* HAMBURGER */
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.ham span{display:block;width:24px;height:2px;background:var(--white);transition:all .25s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg);border-bottom:2px solid var(--red);padding:1.5rem 2rem;z-index:199;flex-direction:column;gap:0}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:1rem 0;border-bottom:1px solid var(--border);transition:color .15s;cursor:pointer}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--red)}
+.mobile-menu .mob-book{margin-top:1rem;background:var(--red);color:#fff;text-align:center;padding:14px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;border:none}
+
+@media(max-width:768px){
+  .nav{padding:0 1.2rem}
+  .nav-links,.nav-btn{display:none}
+  .ham{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero::after{font-size:160px;right:-20px}
+  .hero-left{padding:3rem 1.5rem 2rem}
+  .hero h1{font-size:58px}
+  .hero-sub{font-size:13px;margin:1.2rem 0 2rem}
+  .hero-btns{flex-direction:column;gap:10px}
+  .btn-red,.btn-line{text-align:center;padding:14px 24px}
+  .hero-right{padding:2rem 1.5rem;min-height:220px}
+  .hero-right::before{width:100%;height:3px;top:0;left:0}
+  .hero-img{max-width:320px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-bottom:1px solid rgba(0,0,0,0.2)}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3),.stat:nth-child(4){border-bottom:none}
+  .stat-n{font-size:32px}
+  .section{padding:3.5rem 1.5rem}
+  .section h2{font-size:42px}
+  .svc-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .booking-grid{grid-template-columns:1fr;gap:2.5rem}
+  .fgrow{grid-template-columns:1fr}
+  .form-box{padding:1.5rem}
+  .rev-grid{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr;gap:2rem;padding:3rem 1.5rem 2rem}
+  .f-bar{margin:1rem 1.5rem 0;flex-direction:column;gap:6px}
+  .f-bar p{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">IRON<span>CLAD</span></div>
+  <ul class="nav-links">
+    <li><a onclick="scrollToSection('services')">Services</a></li>
+    <li><a onclick="scrollToSection('whyus')">Why Us</a></li>
+    <li><a onclick="scrollToSection('booking')">Book</a></li>
+    <li><a onclick="scrollToSection('reviews')">Reviews</a></li>
+  </ul>
+  <a onclick="scrollToSection('booking')" class="nav-btn">Book Now</a>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mob-menu">
+  <a onclick="closeMob();scrollToSection('services')">Services</a>
+  <a onclick="closeMob();scrollToSection('whyus')">Why Us</a>
+  <a onclick="closeMob();scrollToSection('booking')">Book</a>
+  <a onclick="closeMob();scrollToSection('reviews')">Reviews</a>
+  <a onclick="closeMob();scrollToSection('booking')" class="mob-book">Book Now</a>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><div class="tag-bar"></div><span class="tag-text">Est. 2003 — Elite Auto Repair</span></div>
+    <h1><span class="stroke">NO</span><br><span class="red">MERCY</span><br>ON REPAIRS.</h1>
+    <p class="hero-sub">Brutally honest diagnostics. Lightning-fast turnarounds. Certified mechanics who treat your vehicle like it's going back on the track.</p>
+    <div class="hero-btns">
+      <a onclick="scrollToSection('booking')" class="btn-red">Book a Job</a>
+      <a onclick="scrollToSection('services')" class="btn-line">Our Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg class="hero-img" viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="220" cy="198" rx="180" ry="16" fill="#e8202a" opacity="0.08"/>
+      <path d="M40 145 L60 108 L140 75 L300 75 L380 108 L400 145 Z" fill="#181818"/>
+      <rect x="40" y="145" width="360" height="44" rx="5" fill="#1c1c1c"/>
+      <path d="M130 108 L165 78 L275 78 L310 108 Z" fill="#222"/>
+      <path d="M168 104 L188 82 L252 82 L252 104 Z" fill="#0d1821" opacity="0.9"/>
+      <path d="M256 104 L256 82 L302 82 L312 104 Z" fill="#0d1821" opacity="0.9"/>
+      <line x1="254" y1="78" x2="254" y2="104" stroke="#1c1c1c" stroke-width="4"/>
+      <rect x="40" y="148" width="360" height="3" rx="1" fill="#e8202a" opacity="0.9"/>
+      <line x1="320" y1="120" x2="370" y2="120" stroke="#2a2a2a" stroke-width="2"/>
+      <line x1="325" y1="128" x2="372" y2="128" stroke="#2a2a2a" stroke-width="2"/>
+      <line x1="330" y1="136" x2="374" y2="136" stroke="#2a2a2a" stroke-width="2"/>
+      <circle cx="115" cy="189" r="30" fill="#111" stroke="#e8202a" stroke-width="2"/>
+      <circle cx="115" cy="189" r="20" fill="#1a1a1a"/>
+      <circle cx="115" cy="189" r="7" fill="#e8202a"/>
+      <line x1="115" y1="169" x2="115" y2="175" stroke="#e8202a" stroke-width="1.5"/>
+      <line x1="115" y1="203" x2="115" y2="209" stroke="#e8202a" stroke-width="1.5"/>
+      <line x1="95" y1="189" x2="101" y2="189" stroke="#e8202a" stroke-width="1.5"/>
+      <line x1="129" y1="189" x2="135" y2="189" stroke="#e8202a" stroke-width="1.5"/>
+      <circle cx="325" cy="189" r="30" fill="#111" stroke="#e8202a" stroke-width="2"/>
+      <circle cx="325" cy="189" r="20" fill="#1a1a1a"/>
+      <circle cx="325" cy="189" r="7" fill="#e8202a"/>
+      <line x1="325" y1="169" x2="325" y2="175" stroke="#e8202a" stroke-width="1.5"/>
+      <line x1="325" y1="203" x2="325" y2="209" stroke="#e8202a" stroke-width="1.5"/>
+      <line x1="305" y1="189" x2="311" y2="189" stroke="#e8202a" stroke-width="1.5"/>
+      <line x1="339" y1="189" x2="345" y2="189" stroke="#e8202a" stroke-width="1.5"/>
+      <path d="M42 120 L75 112 L75 130 L42 134 Z" fill="#e8202a" opacity="0.85"/>
+      <path d="M398 120 L365 112 L365 130 L398 134 Z" fill="#444" opacity="0.5"/>
+      <rect x="370" y="177" width="22" height="7" rx="3.5" fill="#333"/>
+      <line x1="220" y1="147" x2="220" y2="186" stroke="#2a2a2a" stroke-width="1.5"/>
+      <rect x="178" y="158" width="30" height="5" rx="2.5" fill="#2a2a2a"/>
+      <rect x="230" y="158" width="30" height="5" rx="2.5" fill="#2a2a2a"/>
+      <line x1="10" y1="219" x2="430" y2="219" stroke="#222" stroke-width="1"/>
+    </svg>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">20+</div><div class="stat-l">Years Wrenching</div></div>
+  <div class="stat"><div class="stat-n">15K+</div><div class="stat-l">Jobs Done</div></div>
+  <div class="stat"><div class="stat-n">4.97★</div><div class="stat-l">Avg Rating</div></div>
+  <div class="stat"><div class="stat-n">0</div><div class="stat-l">Comebacks</div></div>
+</div>
+
+<section class="section dark-section" id="services">
+  <div class="section-inner">
+    <div class="s-tag"><div class="bar"></div><span>What We Fix</span></div>
+    <h2>We Handle It All</h2>
+    <p class="section-sub">Click any service to see problem details, warning signs, and what's included. Then book on WhatsApp.</p>
+    <div class="svc-grid" id="serviceGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="whyus">
+  <div class="section-inner">
+    <div class="s-tag"><div class="bar"></div><span>Why Us</span></div>
+    <h2>Built Different</h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🔧</div><h4>Master Techs</h4><p>15+ years average experience. Certified on all makes.</p></div>
+      <div class="why-card"><div class="why-icon">💰</div><h4>Fair Pricing</h4><p>No hidden fees. You approve before we touch anything.</p></div>
+      <div class="why-card"><div class="why-icon">🛡️</div><h4>24 Month Warranty</h4><p>All repairs backed. Parts & labor covered.</p></div>
+      <div class="why-card"><div class="why-icon">🚀</div><h4>Same Day Service</h4><p>Most jobs done by 5pm. No unnecessary delays.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="m-inner">
+    <span>Engine Repair</span><span class="sep">✕</span><span>Brake Systems</span><span class="sep">✕</span><span>Same Day Service</span><span class="sep">✕</span><span>Electrical Diagnostics</span><span class="sep">✕</span><span>All Makes & Models</span><span class="sep">✕</span><span>Free Inspection</span><span class="sep">✕</span>
+    <span>Engine Repair</span><span class="sep">✕</span><span>Brake Systems</span><span class="sep">✕</span><span>Same Day Service</span><span class="sep">✕</span><span>Electrical Diagnostics</span><span class="sep">✕</span><span>All Makes & Models</span><span class="sep">✕</span><span>Free Inspection</span><span class="sep">✕</span>
+  </div>
+</div>
+
+<section class="section dark-section" id="booking">
+  <div class="section-inner">
+    <div class="s-tag"><div class="bar"></div><span>Get In</span></div>
+    <h2>Book Your Slot</h2>
+    <div class="booking-grid">
+      <div class="b-info">
+        <p>Fill out the form or message us on WhatsApp. Same-day slots available Mon–Sat. No-nonsense — just show up and we'll handle the rest.</p>
+        <div class="b-contacts">
+          <div class="b-row"><div class="b-icon">📍</div><div><div class="b-txt">Beirut, Lebanon</div><div class="b-sub">Mon–Sat · 7:00 AM – 7:00 PM</div></div></div>
+          <div class="b-row"><div class="b-icon">📞</div><div><div class="b-txt">76 123 456</div><div class="b-sub">Straight to a mechanic — no hold music</div></div></div>
+          <div class="b-row"><div class="b-icon">💬</div><div><div class="b-txt"><a href="#" id="whatsappContact" style="color:var(--red); text-decoration:none">Click to Chat on WhatsApp</a></div><div class="b-sub">Reply within 30 minutes</div></div></div>
+        </div>
+      </div>
+      <div class="form-box">
+        <h3>Lock In Your Booking</h3>
+        <div class="fgrow">
+          <div class="fg"><label>First Name</label><input type="text" id="firstName" placeholder="John"/></div>
+          <div class="fg"><label>Last Name</label><input type="text" id="lastName" placeholder="Smith"/></div>
+        </div>
+        <div class="fgrow">
+          <div class="fg"><label>Phone</label><input type="tel" id="phone" placeholder="76 123 456"/></div>
+          <div class="fg"><label>Email</label><input type="email" id="email" placeholder="john@email.com"/></div>
+        </div>
+        <div class="fg"><label>Service Needed</label>
+          <select id="serviceSelect">
+            <option value="">Select a service…</option>
+            <option>Engine Repair / Diagnostic</option>
+            <option>Brake Service</option>
+            <option>Oil Change</option>
+            <option>Electrical & ECU</option>
+            <option>AC & Heating</option>
+            <option>Suspension & Tyres</option>
+          </select>
+        </div>
+        <div class="fgrow">
+          <div class="fg"><label>Date</label><input type="date" id="date"/></div>
+          <div class="fg"><label>Time</label><select id="time"><option>7:00 AM</option><option>9:00 AM</option><option>11:00 AM</option><option>1:00 PM</option><option>3:00 PM</option><option>5:00 PM</option></select></div>
+        </div>
+        <div class="fg"><label>Tell Us What's Wrong</label><textarea id="issue" placeholder="Describe the issue or any details…"></textarea></div>
+        <button class="f-btn" onclick="submitBooking()">Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="section-inner">
+    <div class="s-tag"><div class="bar"></div><span>Reviews</span></div>
+    <h2>Real Customers. Real Results.</h2>
+    <div class="rev-grid">
+      <div class="rev">
+        <div class="rev-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <blockquote>"Three other garages gave up on my engine. Ironclad fixed it in one day. These guys are the real deal."</blockquote>
+        <div class="rev-person"><div class="rev-av">DH</div><div><div class="rev-name">Danny H.</div><div class="rev-car">Ford Mustang GT</div></div></div>
+      </div>
+      <div class="rev">
+        <div class="rev-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <blockquote>"Honest quote, no upsells, done ahead of time. That's all I ask — and Ironclad nailed every single one."</blockquote>
+        <div class="rev-person"><div class="rev-av">LM</div><div><div class="rev-name">Lisa M.</div><div class="rev-car">BMW M3</div></div></div>
+      </div>
+      <div class="rev">
+        <div class="rev-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <blockquote>"Came in with a mystery electrical fault. They found it in 45 minutes. Haven't had an issue since. Legends."</blockquote>
+        <div class="rev-person"><div class="rev-av">TK</div><div><div class="rev-name">Tony K.</div><div class="rev-car">Dodge Challenger</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-brand">
+    <div class="logo">IRON<span style="color:var(--red)">CLAD</span></div>
+    <p>No-nonsense auto repair done right the first time. Certified mechanics. Brutal honesty. Real results.</p>
+  </div>
+  <div class="fcol">
+    <h4>Services</h4>
+    <ul>
+      <li><a onclick="scrollToSection('services')">Engine Repair</a></li>
+      <li><a onclick="scrollToSection('services')">Brake Systems</a></li>
+      <li><a onclick="scrollToSection('services')">Electrical & ECU</a></li>
+      <li><a onclick="scrollToSection('services')">Oil Change</a></li>
+      <li><a onclick="scrollToSection('services')">Suspension & Tyres</a></li>
+    </ul>
+  </div>
+  <div class="fcol">
+    <h4>Company</h4>
+    <ul>
+      <li><a onclick="alert('Ironclad Auto — Premium Garage')">About Us</a></li>
+      <li><a onclick="scrollToSection('whyus')">Why Choose Us</a></li>
+      <li><a onclick="scrollToSection('booking')">Book a Job</a></li>
+      <li><a onclick="scrollToSection('reviews')">Reviews</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="f-bar">
+  <p>© 2026 Ironclad Auto. All rights reserved.</p>
+  <p>Mon – Sat · 7:00 AM – 7:00 PM</p>
+</div>
+
+<div id="serviceModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Engine Repair</h2>
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="detail-block">
+        <strong>🔍 The Problem:</strong>
+        <p id="problemText">Engines lose compression, develop leaks, and suffer from worn internals over time — reducing power by up to 30%.</p>
+      </div>
+      <div class="detail-block warning-signs">
+        <strong>⚠️ Warning Signs:</strong>
+        <p id="warningText">• Blue or white smoke from exhaust<br>• Metal knocking or ticking noises<br>• Check engine light on<br>• Oil consumption >1L per 1000km<br>• Loss of power or rough idle</p>
+      </div>
+      <div class="detail-block">
+        <strong>✅ What's Included:</strong>
+        <ul class="sub-list" id="subList">
+          <li>Full computer diagnostic scan</li>
+          <li>Compression & leak-down test</li>
+          <li>Oil change with OEM filter</li>
+          <li>Spark plug inspection/replacement</li>
+          <li>Detailed repair report</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" id="modalWhatsappBtn" class="modal-wa" target="_blank">📱 Book This Service on WhatsApp →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const servicesData = [
+  {name:"Engine Repair", icon:"🔧", price:"$120+", desc:"Full diagnostics & repair",
+   problem:"Engines lose compression, develop leaks, and suffer from worn internals over time — reducing power by up to 30%. Small issues become major failures if ignored.",
+   warning:"• Blue or white smoke from exhaust\n• Metal knocking or ticking noises\n• Check engine light is on\n• Oil consumption >1L per 1000km\n• Loss of power or rough idle",
+   subs:["Full computer diagnostic scan","Compression & leak-down test","Oil change with OEM filter","Spark plug inspection/replacement","Detailed repair report with photos","6-month warranty on all work"]},
+  {name:"Brake Service", icon:"🛑", price:"$85+", desc:"Stop with confidence",
+   problem:"Brake pads wear down every 30,000-50,000 km. Worn brakes increase stopping distance by up to 60% and risk accidents.",
+   warning:"• Squealing or grinding when braking\n• Pulsing brake pedal\n• Car pulls left or right while stopping\n• Brake warning light on dashboard\n• Soft or spongy pedal feel",
+   subs:["Complete brake system inspection","Brake pad replacement","Rotor resurfacing or replacement","Brake caliper service if needed","Brake fluid flush & replacement","Road test after repair"]},
+  {name:"Oil Change", icon:"🛢️", price:"$39", desc:"Keep engine running smooth",
+   problem:"Engine oil degrades after 5,000-7,500 km. Old oil causes engine wear, reduced fuel economy, and potential engine failure.",
+   warning:"• Dark/black oil on dipstick\n• Engine knocking sounds\n• Oil change light on\n• Burning smell from engine\n• Low oil pressure",
+   subs:["Full synthetic or conventional oil","OEM oil filter replacement","Fluid top-up (coolant, brake, washer)","Engine performance check","Tire pressure check"]},
+  {name:"Electrical & ECU", icon:"⚡", price:"$60+", desc:"Tame your car's electronics",
+   problem:"Modern vehicles have 70+ computer modules. One faulty sensor can trigger multiple warning lights and put your car into limp mode.",
+   warning:"• Check engine or warning lights\n• Intermittent electrical failures\n• Battery drains overnight\n• Communication errors or no-start\n• Flickering lights or gauges",
+   subs:["Full OBD2 & manufacturer scan","Battery & charging system test","Alternator output check","Sensor testing & replacement","Wiring harness inspection","ECU reprogramming if needed"]},
+  {name:"Suspension & Tyres", icon:"🔄", price:"$95+", desc:"Smooth ride, sure grip",
+   problem:"Worn shocks, struts, and bushings compromise vehicle handling, tire life, and passenger comfort. Dangerous at highway speeds.",
+   warning:"• Excessive bouncing after bumps\n• Steering wheel vibration at speed\n• Clunking noises over bumps\n• Uneven or rapid tire wear\n• Car leans excessively in corners",
+   subs:["Complete suspension inspection","Shock & strut condition check","Wheel alignment","Tire rotation & balancing","Puncture repair if needed","Ball joint & tie rod inspection"]},
+  {name:"AC & Heating", icon:"❄️", price:"$75+", desc:"Stay comfortable year-round",
+   problem:"AC systems lose 10-15% of refrigerant annually. Leaks or compressor failure means no cold air in hot summers.",
+   warning:"• Weak or warm air from vents\n• Strange noises when AC activates\n• Bad odors from air ducts\n• Visible leaks under dashboard\n• AC cycles on/off rapidly",
+   subs:["Full AC performance test","Refrigerant recharge","Leak detection with UV dye","Compressor & clutch inspection","Cabin air filter replacement","System sanitization"]}
+];
+
+function renderServices(){
+  const grid=document.getElementById('serviceGrid');
+  grid.innerHTML='';
+  servicesData.forEach((service, idx)=>{
+    const card=document.createElement('div');
+    card.className='svc-card';
+    card.innerHTML=`
+      <div class="svc-icon">${service.icon}</div>
+      <h3>${service.name}</h3>
+      <p>${service.desc}</p>
+      <div class="svc-price">${service.price}</div>
+      <div class="svc-tag">Click for details →</div>
+    `;
+    card.onclick=()=>openModal(idx);
+    grid.appendChild(card);
+  });
+}
+
+function openModal(index){
+  const s=servicesData[index];
+  document.getElementById('modalTitle').innerText=s.name;
+  document.getElementById('problemText').innerHTML=s.problem;
+  document.getElementById('warningText').innerHTML=s.warning.replace(/\n/g,'<br>');
+  const subList=document.getElementById('subList');
+  subList.innerHTML='';
+  s.subs.forEach(sub=>{const li=document.createElement('li');li.innerText=sub;subList.appendChild(li);});
+  const msg=`Hello! I need ${s.name} service for my car. Please tell me the price and when can I come?`;
+  document.getElementById('modalWhatsappBtn').href=`https://wa.me/96176123456?text=${encodeURIComponent(msg)}`;
+  document.getElementById('serviceModal').style.display='block';
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('serviceModal').style.display='none';document.body.style.overflow='auto';}
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});closeMob();}
+function closeMob(){document.getElementById('ham').classList.remove('open');document.getElementById('mob-menu').classList.remove('open');}
+function submitBooking(){
+  const firstName=document.getElementById('firstName')?.value||'', lastName=document.getElementById('lastName')?.value||'', phone=document.getElementById('phone')?.value||'', service=document.getElementById('serviceSelect')?.value||'', date=document.getElementById('date')?.value||'', time=document.getElementById('time')?.value||'', issue=document.getElementById('issue')?.value||'';
+  if(!firstName||!lastName||!phone||!service||!date){
+    alert('⚠️ Please fill in all required fields (Name, Phone, Service, Date)');
+    return;
+  }
+  alert(`✅ Booking Request Sent!\n\n${firstName} ${lastName}\nService: ${service}\nDate: ${date} at ${time}\nPhone: ${phone}\n\nWe'll confirm your appointment within 2 hours.`);
+  document.getElementById('firstName').value='';document.getElementById('lastName').value='';document.getElementById('phone').value='';document.getElementById('email').value='';document.getElementById('serviceSelect').value='';document.getElementById('date').value='';document.getElementById('issue').value='';
+}
+
+const ham=document.getElementById('ham');const mob=document.getElementById('mob-menu');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open');});
+document.getElementById('whatsappContact').href='https://wa.me/96176123456?text=Hello! I need service for my car.';
+window.onclick=(e)=>{if(e.target===document.getElementById('serviceModal'))closeModal();};
+renderServices();
+</script>
+</body>
+</html>
