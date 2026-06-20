@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false"><trust-anchors><certificates src="system" /></trust-anchors></base-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">shiftlb.com</domain></domain-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">accounts.google.com</domain></domain-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">apis.google.com</domain></domain-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">oauth2.googleapis.com</domain></domain-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">www.googleapis.com</domain></domain-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">appleid.apple.com</domain></domain-config>
+    <domain-config cleartextTrafficPermitted="false"><domain includeSubdomains="true">xriitxzvlabrllibyoco.supabase.co</domain></domain-config>
+</network-security-config>
